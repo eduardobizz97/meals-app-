@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import CategoryGridTitle from '../components/CategoryGridTitle';
 
 import COLORS from '../constants/Colors';
 
@@ -30,8 +31,10 @@ const CategoriesScreen = props => {
 
         }
         return (
-            <TouchableOpacity
-                onPress={() => {
+            <CategoryGridTitle
+                title={itemData.item.title}
+                color={itemData.item.color}
+                onSelect={()=>{
                     props.navigation.navigate({
                         routeName: 'CategoryMeals',
                         params: {
@@ -39,21 +42,18 @@ const CategoriesScreen = props => {
                         }
                     });
                 }}
-                style={[styles.gridItem, { backgroundColor: itemData.item.color }]}>
-                <View >
-                    <Text style={{ color: COLORS.whiteColor }}>{itemData.item.title}</Text>
-                </View>
-            </TouchableOpacity>
+            />
         );
     };
 
 
     return (
         <FlatList
+            key={numOfColumns}
             keyExtractor={(item, index) => item.id} //New react apps doesnt need this shit
             data={formatData(CATEGORIES, numOfColumns)}
             renderItem={renderGridItem}
-            numColumns={numOfColumns} />
+            numColumns={2} />
     );
 };
 
@@ -70,13 +70,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
 
-    },
+    }
+    
 
 });
 
 CategoriesScreen.navigationOptions = {
     headerTitle: 'Meal Categories',
-    
+
+
 };
 
 export default CategoriesScreen;
