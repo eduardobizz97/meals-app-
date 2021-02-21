@@ -32,7 +32,12 @@ const CategoriesScreen = props => {
         return (
             <TouchableOpacity
                 onPress={() => {
-                    props.navigation.navigate({ routeName: 'CategoryMeals' });
+                    props.navigation.navigate({
+                        routeName: 'CategoryMeals',
+                        params: {
+                            categoryId: itemData.item.id
+                        }
+                    });
                 }}
                 style={[styles.gridItem, { backgroundColor: itemData.item.color }]}>
                 <View >
@@ -63,21 +68,15 @@ const styles = StyleSheet.create({
         margin: 15,
         height: 150,
         justifyContent: 'center',
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+
+    },
+
 });
 
 CategoriesScreen.navigationOptions = {
     headerTitle: 'Meal Categories',
-    headerStyle: {
-        backgroundColor: COLORS.primaryColor
-    },
-    headerTintColor: COLORS.whiteColor,
-    headerTitleStyle: {
-        textAlign: 'center',
-        fontFamily: 'open-sans',
-        fontWeight: 'bold',
-    },
+    
 };
 
 export default CategoriesScreen;

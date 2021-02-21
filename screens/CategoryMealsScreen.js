@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { CATEGORIES } from '../data/dummy-data';
 
 const CategoryMealsScreen = props => {
     return (
@@ -15,6 +16,16 @@ const CategoryMealsScreen = props => {
             }} />
         </View>
     );
+};
+
+CategoryMealsScreen.navigationOptions = (navigationData) => {
+    const catId = navigationData.navigation.getParam('categoryId');
+
+    const selectedCatergory = CATEGORIES.find(cat => cat.id === catId);
+
+    return {
+        headerTitle: selectedCatergory.title
+    };
 };
 
 const styles = StyleSheet.create({
