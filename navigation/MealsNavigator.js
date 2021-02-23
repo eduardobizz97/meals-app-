@@ -45,6 +45,32 @@ const MealsNavigator = createStackNavigator(
     }
 });
 
+const FavNavigator = createStackNavigator(
+    {
+        Favorites: FavoriteScreen,
+        MealDetail: MealDetailScreen
+    }, {
+    defaultNavigationOptions: {
+
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? COLORS.favColor : '',
+            borderBottomWidth: Platform.OS === 'android' ? 0 : 1,
+            borderBottomColor: Platform.OS === 'android' ? COLORS.primaryColor : COLORS.favColor
+
+        },
+        headerTintColor: Platform.OS === 'android' ? COLORS.whiteColor : COLORS.favColor,
+        headerTitleStyle: {
+            textAlign: 'center',
+            fontFamily: 'open-sans',
+            fontWeight: 'bold',
+        },
+    }
+}
+
+
+
+);
+
 const tabScreenConfig = {
     Meals: {
         screen: MealsNavigator, navigationOptions: {
@@ -55,28 +81,32 @@ const tabScreenConfig = {
         }
     },
     Favorites: {
-        screen: FavoriteScreen, navigationOptions: {
+        screen: FavNavigator, navigationOptions: ({ focused, inactiveTintColor })=>({
             tabBarIcon: (tabInfo) => {
                 return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />
             },
-
-            tabBarColor: COLORS.favColor,
-        
-        }
+            tabBarColor: COLORS.favColor
+        })
     }
 };
 
 const MealsFavTabNavigator = Platform.OS === 'android'
-    ? createMaterialBottomTabNavigator(tabScreenConfig,{
+    ? createMaterialBottomTabNavigator(tabScreenConfig, {
 
         activeTintColor: COLORS.fourthColor,
-        shifting: true
+        shifting: true,
+        labeled: false,
+        barStyle: {
+            backgroundColor: COLORS.thirdColor
+        }
     })
     : createBottomTabNavigator(tabScreenConfig, {
+
         tabBarOptions: {
-            activeBackgroundColor: COLORS.thirdColor,
-            activeTintColor: COLORS.whiteColor
-        }
+            activeBackgroundColor: COLORS.whiteColor,
+            activeTintColor: COLORS.thirdColor,
+        },
+
     });
 
 

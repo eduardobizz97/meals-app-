@@ -1,0 +1,8 @@
+{
+            tabBarIcon: ({ focused, inactiveTintColor }) => {
+                return <Ionicons name='ios-star' size={25} color={focused ? COLORS.favColor : inactiveTintColor} />
+            },
+            tabBarLabel: 
+
+
+        }
