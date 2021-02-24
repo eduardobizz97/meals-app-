@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createBottomTabNavigator,BottomTabBar } from 'react-navigation-tabs';
 import { createAppContainer } from 'react-navigation';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -16,8 +16,8 @@ import MealDetailScreen from '../screens/MealDetailScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 
 import COLORS from '../constants/Colors';
-import Colors from '../constants/Colors';
-import { isAndroid } from '../constants/Utils';
+
+const TabBarComponent = (props) => <BottomTabBar {...props} />;
 
 const MealsNavigator = createStackNavigator(
     {
@@ -86,7 +86,11 @@ const tabScreenConfig = {
     Favorites: {
         screen: FavNavigator, navigationOptions: {
             tabBarIcon: (tabInfo) => {
-                return <Ionicons name='ios-star' size={25} color={tabInfo.focused === true ? COLORS.favColor : tabInfo.tintColor} />
+                let favColor = tabInfo.tintColor;
+                if(Platform.OS !== 'android'){
+                    favColor = COLORS.favColor;
+                }
+                return <Ionicons name='ios-star' size={25} color={tabInfo.focused ? favColor : tabInfo.tintColor} />
             },
             
             tabBarColor: COLORS.favColor
@@ -95,7 +99,10 @@ const tabScreenConfig = {
 
 };
 
+
+
 const MealsFavTabNavigator = Platform.OS === 'android'
+
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
 
         activeTintColor: COLORS.fourthColor,
@@ -106,17 +113,26 @@ const MealsFavTabNavigator = Platform.OS === 'android'
         }
 
     })
-    : createBottomTabNavigator(tabScreenConfig, {
+    : createBottomTabNavigator(tabScreenConfig,  {
 
+        tabBarComponent: (props) => {
 
-        tabBarOptions: {
+            let isFocused = props.navigation.isFocused;
+            console.log(isFocused);
+            console.log(props);
+            return(
+                <TabBarComponent {...props} />
+            )
+        },
+        tabBarOptions:{
             activeBackgroundColor: COLORS.whiteColor,
             activeTintColor:  COLORS.thirdColor,
-            showLabel: false
-        },
-
-
+            showLabel: true,
+            labelStyle: {
+                fontSize: 20,}
+        }
     });
+
 
 
     export default createAppContainer(MealsFavTabNavigator);
