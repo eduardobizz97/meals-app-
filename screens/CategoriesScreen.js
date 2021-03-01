@@ -1,9 +1,12 @@
 import React from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
 import CategoryGridTitle from '../components/CategoryGridTitle';
 
 import COLORS from '../constants/Colors';
 
+import HeaderButton from '../components/HeaderButton'
 import { CATEGORIES } from "../data/dummy-data";
 import Category from '../models/category';
 
@@ -34,7 +37,7 @@ const CategoriesScreen = props => {
             <CategoryGridTitle
                 title={itemData.item.title}
                 color={itemData.item.color}
-                onSelect={()=>{
+                onSelect={() => {
                     props.navigation.navigate({
                         routeName: 'CategoryMeals',
                         params: {
@@ -71,13 +74,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     }
-    
+
 
 });
 
-CategoriesScreen.navigationOptions = {
-    headerTitle: 'Meal Categories',
-
+CategoriesScreen.navigationOptions = (navData) => {
+    return {
+        headerTitle: 'Meal Categories',
+        headerLeft: (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                    title='Menu'
+                    iconName='ios-menu'
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }} />
+            </HeaderButtons>
+        )
+    }
 
 };
 

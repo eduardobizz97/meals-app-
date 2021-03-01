@@ -1,8 +1,10 @@
-{
-            tabBarIcon: ({ focused, inactiveTintColor }) => {
-                return <Ionicons name='ios-star' size={25} color={focused ? COLORS.favColor : inactiveTintColor} />
-            },
-            tabBarLabel: 
-
-
-        }
+                <View style={styles.container}>
+                    <Text style={
+                        {color: props.focused ? COLORS.favColor : props.tintColor,
+                        fontFamily: labelStyle.fontFamily,
+                        fontSize: labelStyle.fontSize
+                        }
+                    }>
+                        Favorites
+                    </Text>
+                </View> 
