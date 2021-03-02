@@ -152,7 +152,7 @@ const FilterNavigator = createStackNavigator({
     defaultNavigationOptions: {
 
         headerStyle: {
-            backgroundColor: Platform.OS === 'android' ? COLORS.favColor : '',
+            backgroundColor: Platform.OS === 'android' ? COLORS.primaryColor : '',
             borderBottomWidth: Platform.OS === 'android' ? 0 : 1,
             borderBottomColor: Platform.OS === 'android' ? COLORS.primaryColor : COLORS.accentColor
 
