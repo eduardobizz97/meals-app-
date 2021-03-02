@@ -7,6 +7,8 @@ import { enableScreens } from "react-native-screens";
 
 import MealsNavigator from './navigation/MealsNavigator';
 
+console.disableYellowBox = true;
+
 enableScreens();
 
 const fetchFonts = () => {

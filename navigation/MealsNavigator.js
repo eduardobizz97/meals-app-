@@ -21,9 +21,11 @@ import { color } from 'react-native-reanimated';
 
 const TabBarComponent = (props) => <BottomTabBar {...props} />;
 
+const isAndroid = Platform.OS === 'android';
+
 const labelStyle = {
     fontSize: 15,
-    fontFamily: 'open-sans'
+    fontFamily: 'open-sans-bold'
 };
 
 const MealsNavigator = createStackNavigator(
@@ -144,7 +146,9 @@ const FilterNavigator = createStackNavigator({
     Filters: FiltersScreen
 },
 {
-
+    navigationOptions:{
+        
+    },
     defaultNavigationOptions: {
 
         headerStyle: {
@@ -164,8 +168,21 @@ const FilterNavigator = createStackNavigator({
 }
 );
 const MainNavigator = createDrawerNavigator({
-    MealsFavs: MealsFavTabNavigator,
+    MealsFavs: {screen: MealsFavTabNavigator, navigationOptions: {
+        drawerLabel: 'Meals',
+
+    }},
     Filter: FilterNavigator
+},{
+    drawerType: 'slide',
+    drawerBackgroundColor: isAndroid ? COLORS.thirdColor : COLORS.whiteColor,
+    contentOptions: {
+        activeTintColor: isAndroid ? COLORS.whiteColor : COLORS.thirdColor,
+        labelStyle: {
+            fontSize: 20,
+            fontFamily: 'open-sans-bold'
+        }
+    }
 });
 
 

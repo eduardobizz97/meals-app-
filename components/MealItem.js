@@ -9,6 +9,7 @@ import {
 import Colors from "../constants/Colors";
 
 import COLORS from '../constants/Colors';
+import DefaultText from "./DefaultText";
 
 const MealItem = (props) => {
     return (
@@ -26,9 +27,10 @@ const MealItem = (props) => {
                     </ImageBackground>
                 </View>
                 <View style={[styles.mealRow, styles.mealDetail]}>
-                    <Text>{props.itemData.item.duration}</Text>
-                    <Text>{props.itemData.item.complexity}</Text>
-                    <Text>{props.itemData.item.affordability}</Text>
+                    <DefaultText>{props.itemData.item.duration}</DefaultText>
+                    <DefaultText>{props.itemData.item.complexity}</DefaultText>
+                    <DefaultText>{props.itemData.item.affordability}</DefaultText>
+                   
                 </View>
             </TouchableOpacity >
         </View>
