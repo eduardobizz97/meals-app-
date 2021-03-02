@@ -86,6 +86,7 @@ CategoriesScreen.navigationOptions = (navData) => {
                 <Item
                     title='Menu'
                     iconName='ios-menu'
+                    iconColor={COLORS.thirdColor}
                     onPress={() => {
                         navData.navigation.toggleDrawer();
                     }} />

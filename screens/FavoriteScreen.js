@@ -27,7 +27,7 @@ FavoriteScreen.navigationOptions = navData => {
                 <Item
                     title='Menu'
                     iconName='ios-menu'
-                    nav='favorites'
+                    iconColor={Colors.favColor}
                     onPress={() => {
                         navData.navigation.toggleDrawer();
                     }} />

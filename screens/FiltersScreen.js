@@ -21,6 +21,7 @@ FiltersScreen.navigationOptions = navData => {
                 <Item
                     title='Menu'
                     iconName='ios-menu'
+                    
                     onPress={() => {
                         navData.navigation.toggleDrawer();
                     }} />

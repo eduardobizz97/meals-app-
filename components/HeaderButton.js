@@ -9,6 +9,7 @@ import COLORS from '../constants/Colors';
 
 const CustomHeaderButton = props => {
 
+    
     return <HeaderButton
         {...props}
         IconComponent={Ionicons}
@@ -16,11 +17,7 @@ const CustomHeaderButton = props => {
         color={
             Platform.OS === 'android' ? 
                 COLORS.whiteColor 
-            : //else
-                props.nav !== 'favorites' ? 
-                    COLORS.thirdColor 
-                : //else
-                    COLORS.favColor } />
+            : props.iconColor} />
 };
 
 export default CustomHeaderButton;

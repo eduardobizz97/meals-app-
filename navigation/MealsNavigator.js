@@ -7,7 +7,7 @@ import { createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-import { StyleSheet,Platform, Text, View } from 'react-native';
+import { StyleSheet, Platform, Text, View } from 'react-native';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -68,7 +68,7 @@ const FavNavigator = createStackNavigator(
 
         },
         headerTintColor: Platform.OS === 'android' ? COLORS.whiteColor : COLORS.favColor,
-        
+
         headerTitleStyle: {
             textAlign: 'center',
             fontFamily: 'open-sans',
@@ -105,8 +105,8 @@ const tabScreenConfig = {
             },
 
             tabBarColor: COLORS.favColor,
-            
-            
+
+
 
 
         }
@@ -134,14 +134,35 @@ const MealsFavTabNavigator = Platform.OS === 'android'
             activeTintColor: COLORS.thirdColor,
             showLabel: false,
             labelStyle: labelStyle
-             
+
         }
-        
+
     });
 
-    const FilterNavigator = createStackNavigator({
-        Filters : FiltersScreen
-    });
+
+const FilterNavigator = createStackNavigator({
+    Filters: FiltersScreen
+},
+{
+
+    defaultNavigationOptions: {
+
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? COLORS.favColor : '',
+            borderBottomWidth: Platform.OS === 'android' ? 0 : 1,
+            borderBottomColor: Platform.OS === 'android' ? COLORS.primaryColor : COLORS.accentColor
+
+        },
+        headerTintColor: Platform.OS === 'android' ? COLORS.whiteColor : COLORS.accentColor,
+
+        headerTitleStyle: {
+            textAlign: 'center',
+            fontFamily: 'open-sans',
+            fontWeight: 'bold',
+        },
+    }
+}
+);
 const MainNavigator = createDrawerNavigator({
     MealsFavs: MealsFavTabNavigator,
     Filter: FilterNavigator
@@ -152,15 +173,15 @@ export default createAppContainer(MainNavigator);
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     tabLabel: {
         fontSize: 15,
         fontFamily: 'open-sans'
     }
 
-  });
+});
 
